@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
 	<name>moipv2</name>
-	<displayName><![CDATA[MOIP Pagamentos S/A]]></displayName>
+	<displayName><![CDATA[MOIP Wirecard Brasil]]></displayName>
 	<version><![CDATA[2.5.7]]></version>
 	<description><![CDATA[Moip Pagamentos, recebimento com cart&atilde;o, boleto ou transfer&ecirc;ncia]]></description>
-	<author><![CDATA[MOIP DEVS - &lt;brunoelisei@gmail.com&gt;]]></author>
+	<author><![CDATA[MOIP DEVS - &lt;prestashop@moip.com.br&gt;]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>
 	<confirmUninstall><![CDATA[Você realmente quer desinstalar?]]></confirmUninstall>
 	<is_configurable>1</is_configurable>

@@ -3,8 +3,8 @@
 	<name>moipv2</name>
 	<displayName><![CDATA[MOIP V2]]></displayName>
 	<version><![CDATA[2.5.6]]></version>
-	<description><![CDATA[This module allows you to accept payments by check.]]></description>
-	<author><![CDATA[MOIP DEVS - BRUNOELISEI@O2TI.COM]]></author>
+	<description><![CDATA[Módulo para recebimento via Moip.]]></description>
+	<author><![CDATA[MOIP DEVS - prestashop@moip.com.br]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>
 	<confirmUninstall>Are you sure you want to delete these details?</confirmUninstall>
 	<is_configurable>1</is_configurable>

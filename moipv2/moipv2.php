@@ -62,7 +62,7 @@ class Moipv2 extends PaymentModule
 		$this->name = 'moipv2';
 		$this->tab = 'payments_gateways';
 		$this->version = '2.5.7';
-		$this->author = 'MOIP DEVS - <brunoelisei@gmail.com>';
+		$this->author = 'MOIP DEVS - <prestashop@moip.com.br>';
 		$this->controllers = array('payment', 'validation', 'authorization');
 		$this->is_eu_compatible = 1;
 
@@ -121,8 +121,8 @@ class Moipv2 extends PaymentModule
 		$this->bootstrap = true;
 		parent::__construct();
 
-		$this->displayName = $this->l('MOIP Pagamentos S/A');
-		$this->description = $this->l('Moip Pagamentos, recebimento com cartão, boleto ou transferência');
+		$this->displayName = $this->l('MOIP Wirecard Brasil');
+		$this->description = $this->l('Moip Wirecard Brasil, recebimento com cartão, boleto ou transferência');
 		$this->confirmUninstall = $this->l('Você realmente quer desinstalar?');
 
 		
