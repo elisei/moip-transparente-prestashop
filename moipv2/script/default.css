@@ -1,0 +1,228 @@
+
+
+.escolha { display: none; }
+
+.label-moip-pg {
+    margin-top: 5px;
+    margin-bottom: 2px;
+}
+#moip-area-pay {
+    border: 1px solid #ccc;
+    padding: 2%;
+    border-radius: 5px;
+}
+.btn-select-payment-moip {
+	text-transform: uppercase;
+	text-align: left;
+	padding-left: 15px;
+	box-shadow: none;
+}
+.btn-select-payment-moip.active {
+	box-shadow: none;
+}
+
+.btn-select-payment-moip.active, .btn-select-payment-moip:hover, .btn-select-payment-moip.active:focus {
+	position: relative;
+	background: #ebebeb;
+	border: 1px solid #ccc;
+}
+.btn-select-payment-moip.active:after, .btn-select-payment-moip:before, .btn-select-payment-moip:hover:after, .btn-select-payment-moip:hover:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.btn-select-payment-moip.active:after, .btn-select-payment-moip:hover:after {
+	border-color: rgba(235, 235, 235, 0);
+	border-left-color: #ebebeb;
+	border-width: 12px;
+    margin-top: -12px;
+}
+.btn-select-payment-moip.active:before, .btn-select-payment-moip:hover:before {
+	border-color: rgba(235, 235, 235, 0);
+	border-left-color: #ccc;
+	border-width: 13px;
+    margin-top: -13px;
+}
+
+/*---------------------------------------------VIEW CARD------------------------------------------------*/
+#card-info-brand { width: 75px; height: 45px;}
+#card-info-brand.VISA { background-image: url(/modules/moipv2/images/visa.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.MASTERCARD { background-image: url(/modules/moipv2/images/mastercard.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.AMEX { background-image: url(/modules/moipv2/images/american.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.DINERS { background-image: url(/modules/moipv2/images/dinners.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.HIPERCARD { background-image: url(/modules/moipv2/images/hipercard.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.ELO { background-image: url(/modules/moipv2/images/elo.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.HIPER { background-image: url(/modules/moipv2/images/hiper.png); background-repeat: no-repeat; background-position: center; }
+.card-info {
+	background-image: url(/modules/moipv2/images/default-card-bg.png);
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 260px;
+    width: 100%;
+    position: absolute;
+    z-index: 99;
+}
+.card-info-back {
+	background-image: url(/modules/moipv2/images/card-back-bg.png);
+    background-repeat: no-repeat;
+    height: 260px;
+    width: 390px;
+    position: absolute;
+   	z-index: 999;
+}
+.card-info-expiration-value {
+	text-align: right;
+    right: 40px;
+    position: relative;
+    margin-top: 20px;
+}
+.card-info-back.active {
+	z-index: 999;
+}
+.card-data-info {
+   position: absolute;
+    margin-top: 32%;
+    padding: 7%;
+    width: 390px;
+    text-transform: uppercase;
+    color: #333;
+}
+.card-info-name {
+    width: 100%;
+    font-size: 18px;
+}
+.card-info-number {
+    font-size: 24px;
+    line-height: 36px;
+}
+#card-info-brand {
+    float: right;
+}
+.card-info-cvv {
+    position: absolute;
+    top: 38%;
+    right: 44px;
+    font-size: 18px;
+}
+
+
+.flip-container {
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-ms-perspective: 1000;
+	perspective: 1000;
+	-ms-transform: perspective(1000px);
+	-moz-transform: perspective(1000px);
+	-moz-transform-style: preserve-3d; 
+	-ms-transform-style: preserve-3d; 
+}
+.flip-container.hover .back {
+	-webkit-transform: rotateY(0deg);
+	-moz-transform: rotateY(0deg);
+	-o-transform: rotateY(0deg);
+	-ms-transform: rotateY(0deg);
+	transform: rotateY(0deg);
+}
+
+.flip-container.hover .front {
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.flip-container, .front, .back {
+    width: 390px;
+    height: 247px;
+}
+.flipper {
+	-webkit-transition: 0.6s;
+	-webkit-transform-style: preserve-3d;
+	-ms-transition: 0.6s;
+
+	-moz-transition: 0.6s;
+	-moz-transform: perspective(1000px);
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+
+	transition: 0.6s;
+	transform-style: preserve-3d;
+
+	position: relative;
+}
+.front, .back {
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transform: rotateY(0deg);
+
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+    -moz-transform: rotateY(0deg);
+
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+    -o-transform: rotateY(0deg);
+
+    -ms-transition: 0.6s;
+    -ms-transform-style: preserve-3d;
+    -ms-transform: rotateY(0deg);
+
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.front {
+	-webkit-transform: rotateY(0deg);
+	-ms-transform: rotateY(0deg);
+	z-index: 2;
+}
+.back {
+	-webkit-transform: rotateY(-180deg);
+    -moz-transform: rotateY(-180deg);
+    -o-transform: rotateY(-180deg);
+    -ms-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+.vertical.flip-container {
+	position: relative;
+}
+
+.vertical .back {
+	-webkit-transform: rotateX(180deg);
+	-moz-transform: rotateX(180deg);
+	-ms-transform: rotateX(180deg);
+	transform: rotateX(180deg);
+}
+.vertical.flip-container .flipper {
+	-webkit-transform-origin: 100% 213.5px;
+	-moz-transform-origin: 100% 213.5px;
+	-ms-transform-origin: 100% 213.5px;
+	transform-origin: 100% 213.5px;
+}
+.vertical.flip-container.hover .back {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+.vertical.flip-container.hover .front {
+    -webkit-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    -o-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+}
