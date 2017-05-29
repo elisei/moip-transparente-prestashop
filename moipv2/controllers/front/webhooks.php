@@ -18,6 +18,7 @@ class Moipv2WebhooksModuleFrontController extends ModuleFrontController
         parent::postProcess();
         $headers = $this->getRequestHeaders();
         Logger::addLog(json_encode($headers) ,1);
+        Logger::addLog(json_encode($headers["Authorization"]) ,1);
         $inputJSON = file_get_contents('php://input');
 		$input= json_decode( $inputJSON, TRUE );
 		Logger::addLog($inputJSON ,1);
@@ -41,9 +42,12 @@ class Moipv2WebhooksModuleFrontController extends ModuleFrontController
 				$order = new Order($order_identificador_id[0]['id_order']);
 				$history = new OrderHistory();
 				$history->id_order = intval($order->id);
-				$history->changeIdOrderState($status, intval($order->id));
-				$history->addWithemail();
-				$history->save(); 
+				$last = $history->getLastOrderState($order->id);
+				if($last->id != $status){
+					$history->changeIdOrderState($status, intval($order->id));
+					$history->addWithemail();
+					$history->save(); 
+				} 
 			}
 		} else {
 			//header('HTTP/1.1 404 Not Found');

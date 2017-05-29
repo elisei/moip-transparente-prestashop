@@ -485,7 +485,7 @@ class Moipv2 extends PaymentModule
 		
 		extract($_GET);
 		$state = $params['objOrder']->getCurrentState();
-		if (in_array($state, array(Configuration::get('MOIPV2_STATUS_1'), Configuration::get('MOIPV2_STATUS_2'),Configuration::get('MOIPV2_STATUS_3'),Configuration::get('PS_OS_OUTOFSTOCK'), Configuration::get('PS_OS_OUTOFSTOCK_UNPAID'))))
+		if (in_array($state, array(Configuration::get('MOIPV2_STATUS_1'), Configuration::get('MOIPV2_STATUS_2'),Configuration::get('MOIPV2_STATUS_3'),Configuration::get('MOIPV2_STATUS_3'))))
 		{
 			if($paymentMethod == "BOLETO"){
 					$this->smarty->assign(array(
@@ -723,6 +723,19 @@ class Moipv2 extends PaymentModule
 			            'lang' => true,
 			            'label' => $this->l('Pagamento em Análise (Cartão de Crédito)'),
 			            'name' => 'MOIPV2_STATUS_3',
+			            
+			            'options' => array(
+			              'query' => $options,
+			              'id' => 'id_option', 
+			              'name' => 'name'
+			            )
+			            
+			          ),
+					array(
+			            'type' => 'select',
+			            'lang' => true,
+			            'label' => $this->l('Pagamento Cancelado'),
+			            'name' => 'MOIPV2_STATUS_4',
 			            
 			            'options' => array(
 			              'query' => $options,

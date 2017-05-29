@@ -78,7 +78,7 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
             if (!$this->module->checkCurrency($cart))
                     Tools::redirect('index.php?controller=order');
 
-             if(isset($moip_order->id)){
+            if(isset($moip_order->id)){
 
                 $cart = $this->context->cart;
                 
@@ -183,43 +183,70 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
 
 
                     } else {
-                        
+                        $moip_status = "CANCELLED";
                         $PAY_MOIP = $this->getPaymentMoIP($moip_order->id, $json);
-                      
-                        if(isset($PAY_MOIP->cancellationDetails)){
-                            $code_error = $PAY_MOIP->cancellationDetails->code;
+
+                            if(!$PAY_MOIP->status) {
+                                foreach ($PAY_MOI as $key => $value) {
+                                    $erros .= $value->description;
+                                }
+
+                                $this->context->smarty->assign(array(
+                                'nbProducts' => $cart->nbProducts(),
+                                'method_moip_pay' => 'ERRO',
+                                'erro_message' =>  $erros,
+                                'cust_currency' => $cart->id_currency,
+                                'currencies' => $this->module->getCurrency((int)$cart->id_currency),
+                                'total' => $cart->getOrderTotal(true, Cart::BOTH),
+                                'isoCode' => $this->context->language->iso_code,
+                                'moipv2Name' => $this->module->moipv2Name,
+                                'this_path' => $this->module->getPathUri(),
+                                'this_path_moipv2' => $this->module->getPathUri(),
+                                'this_path_ssl' => Tools::getShopDomainSsl(true, true).__PS_BASE_URI__.'modules/'.$this->module->name.'/'
+                            ));
+                          return $this->setTemplate('payment_execution.tpl');
                         } else {
-                            $code_error = 35598;
+                           $code_error = "35598";
+                            if($PAY_MOIP->status == "CANCELLED"){
+                                if(!is_null($PAY_MOIP->cancellationDetails)){
+                                    $code_error = $PAY_MOIP->cancellationDetails->code;
+                                }
+                                
+                            }
+                            $moip_status = $PAY_MOIP->status;
+                            $moip_pay = $PAY_MOIP->id;
+                            Logger::addLog($moip_status ,1);
+                            Logger::addLog($code_error ,1);
+                            
+
+                            $mailVars = array(
+                                    '{method_moip_pay}' => "CREDIT_CARD",
+                                    '{moipv2_name}' => 'Cartão de Crédito',                 
+                                );
+
+                            $this->module->validateOrder(
+
+                                                            (int)$cart->id, 
+                                                            Configuration::get('MOIPV2_STATUS_3'), 
+                                                            $total, 
+                                                            "Cartão de Crédito", 
+                                                            NULL, 
+                                                            $mailVars, 
+                                                            (int)$currency->id, 
+                                                            false,
+                                                            $customer->secure_key
+                                                        );
+                            Tools::redirect('index.php?controller=order-confirmation&id_cart='.
+                                (int)$cart->id.
+                                '&id_module='.(int)$this->module->id.
+                                '&id_order='.$this->module->currentOrder.
+                                '&key='.$customer->secure_key.
+                                '&moip_key='.$moip_pay.
+                                '&paymentMethod=CREDIT_CARD&moip_status='.(string)$moip_status.
+                                '&code_id_payment=id_'.(int)$code_error);   
+  
                         }
-                        
-                        $moip_status = $PAY_MOIP->status;
-                        $moip_pay = $PAY_MOIP->id;
-                        $mailVars = array(
-                                '{method_moip_pay}' => "CREDIT_CARD",
-                                '{moipv2_name}' => 'Cartão de Crédito',                 
-                            );
-
-                        $this->module->validateOrder(
-
-                                                        (int)$cart->id, 
-                                                        Configuration::get('MOIPV2_STATUS_3'), 
-                                                        $total, 
-                                                        "Cartão de Crédito", 
-                                                        NULL, 
-                                                        $mailVars, 
-                                                        (int)$currency->id, 
-                                                        false,
-                                                        $customer->secure_key
-                                                    );
-                        Tools::redirect('index.php?controller=order-confirmation&id_cart='.
-                            (int)$cart->id.
-                            '&id_module='.(int)$this->module->id.
-                            '&id_order='.$this->module->currentOrder.
-                            '&key='.$customer->secure_key.
-                            '&moip_key='.$moip_pay.
-                            '&paymentMethod=CREDIT_CARD&moip_status='.$PAY_MOIP->status.
-                            '&code_id_payment=id_'.$code_error);   
-
+                       
                       
                     }
 
@@ -348,10 +375,11 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
                         $url = "https://api.moip.com.br/v2/orders/{$IdMoip}/payments";
                         $oauth = Configuration::get('MOIPV2_OAUTH_PROD');
                 }
-
+                 Logger::addLog($url ,1);
 
                 $header = "Authorization: OAuth " . $oauth;
-	            
+	            Logger::addLog($header ,1);
+
 	            $result = array();
 	            $ch = curl_init();
 	            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -361,8 +389,10 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
 	            
 	            curl_setopt($ch, CURLOPT_HTTPHEADER, array($header, $documento));
 	            curl_setopt($ch,CURLOPT_USERAGENT,'MoipPrestashop/2.0.0');
+                $info_curl = curl_getinfo($ch);
 	            $responseBody = curl_exec($ch);
 	            curl_close($ch);
+                 Logger::addLog($responseBody ,1);
 	            $decode = json_decode($responseBody);
 
 	         return $decode;
