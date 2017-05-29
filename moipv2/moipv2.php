@@ -62,7 +62,7 @@ class Moipv2 extends PaymentModule
 		$this->name = 'moipv2';
 		$this->tab = 'payments_gateways';
 		$this->version = '2.5.7';
-		$this->author = 'MOIP DEVS - <prestashop@moip.com.br>';
+		$this->author = 'MOIP DEVS - <brunoelisei@gmail.com>';
 		$this->controllers = array('payment', 'validation', 'authorization');
 		$this->is_eu_compatible = 1;
 
@@ -121,8 +121,8 @@ class Moipv2 extends PaymentModule
 		$this->bootstrap = true;
 		parent::__construct();
 
-		$this->displayName = $this->l('MOIP Wirecard Brasil');
-		$this->description = $this->l('Moip Wirecard Brasil, recebimento com cartão, boleto ou transferência');
+		$this->displayName = $this->l('MOIP Pagamentos S/A');
+		$this->description = $this->l('Moip Pagamentos, recebimento com cartão, boleto ou transferência');
 		$this->confirmUninstall = $this->l('Você realmente quer desinstalar?');
 
 		
@@ -221,6 +221,7 @@ class Moipv2 extends PaymentModule
                     || !Configuration::deleteByName('MOIPV2_CARTAO_PARCEL9')
                     || !Configuration::deleteByName('MOIPV2_CARTAO_PARCEL10')
                     || !Configuration::deleteByName('MOIPV2_CARTAO_PARCEL11')
+                    || !Configuration::deleteByName('MOIPV2_CARTAO_PARCEL12')
                     || !Configuration::deleteByName('MOIPV2_TYPE_JUROS')
                     
                     || !Configuration::deleteByName('MOIPV2_REDIR_BOLETO')
@@ -272,6 +273,7 @@ class Moipv2 extends PaymentModule
 			Configuration::updateValue('MOIPV2_CARTAO_PARCEL9', Tools::getValue('MOIPV2_CARTAO_PARCEL9'));
 			Configuration::updateValue('MOIPV2_CARTAO_PARCEL10', Tools::getValue('MOIPV2_CARTAO_PARCEL10'));
 			Configuration::updateValue('MOIPV2_CARTAO_PARCEL11', Tools::getValue('MOIPV2_CARTAO_PARCEL11'));
+			Configuration::updateValue('MOIPV2_CARTAO_PARCEL12', Tools::getValue('MOIPV2_CARTAO_PARCEL12'));
 			
 
 
@@ -516,6 +518,7 @@ class Moipv2 extends PaymentModule
 						'status' => 'ok',
 						'id_order' => $params['objOrder']->id
 					));
+					
 			} else {
 					$this->smarty->assign(array(
 						'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
