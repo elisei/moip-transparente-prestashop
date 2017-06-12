@@ -28,7 +28,7 @@ class Moipv2WebhooksModuleFrontController extends ModuleFrontController
 		if($order_status == "PAID"){
 			$status = Configuration::get('MOIPV2_STATUS_1');
 		} elseif ($order_status == "NOT_PAID") {
-			$status = Configuration::get('MOIPV2_STATUS_5');
+			$status = Configuration::get('MOIPV2_STATUS_4');
 		} else{
 			die();
 		}
