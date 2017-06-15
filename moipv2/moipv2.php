@@ -595,7 +595,7 @@ class Moipv2 extends PaymentModule
 													  ),
 													  array(
 													    'id_option' => 2,
-													    'name' => 'Produção (Ambiente de comrpas reais)'           
+													    'name' => 'Produção (Ambiente de compras reais)'           
 													  ),
 													);
 		$fields_form = array(
