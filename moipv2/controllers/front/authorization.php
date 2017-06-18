@@ -456,8 +456,8 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
              // FIM - definição do atributo para o documento cpf...  altere caso necessário para o seu atributo.
 
           
-            $prestashopState = $this->getPrestaShopState($address->id_state);
-            $addressUF = $prestashopState['iso_code'];
+            $prestashopState = new State($address->id_state);
+            $addressUF = $prestashopState-> iso_code;
             $array_order = array(
                             "ownId" => (int)$this->context->cart->id,
                             "amount" => array(
