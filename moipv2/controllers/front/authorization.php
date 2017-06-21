@@ -443,16 +443,10 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
             $customer = new Customer(Context::getContext()->cookie->id_customer);
 
             // INICIO - definição do atributo para o documento cpf...  altere caso necessário para o seu atributo.
-            if(Module::isEnabled('fkcustomers'){
-                if($customer->tipo == 'pf') {
-                      $cpf = $customer->cpf_cnpj;
-                 } elseif ($customer->tipo == 'pj') {
-                      $cnpj = $customer->cpf_cnpj;
-                 } else {
-                      $cpf = '000.000.000-00';
-                      $cnpj = '00.000.000/0000-00';
-                 }
-            } else {
+            
+                     
+                $taxvat = $customer->cpf_cnpj;
+                if(!$taxvat){
                          if(isset($customer->document)){
                             $taxvat = $customer->document;
                          } elseif(isset($customer->taxvat)){
@@ -460,14 +454,18 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
                          } else{
                             $taxvat = '000.000.000-00';
                          }
-             }          
-             
+                } 
+           
+                         
+            
 
             $taxvat = preg_replace("/[^0-9]/", "", $taxvat);
 
             if(strlen($taxvat) > 11){
+                $name_persona  = $address->company;
                 $document_type = "CNPJ";
             } else {
+                $name_persona  = $address->firstname .' '.$address->lastname;
                 $document_type = "CPF";
             }
 
@@ -490,7 +488,7 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
                             "items" => $produc_itens,
                             "customer" => array(
                                                  "ownId" => $customer->email,
-                                                          "fullname" =>$address->firstname .' '.$address->lastname,
+                                                          "fullname" => $name_persona,
                                                           "email" => $customer->email,
                                                           "birthDate" => '1980-10-10',
                                                                             "taxDocument" => array(
