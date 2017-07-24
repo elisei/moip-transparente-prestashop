@@ -600,7 +600,7 @@ class Moipv2AuthorizationModuleFrontController extends ModuleFrontController
             }
             
         } else{
-            $calc = Tools::convertPrice($valor);
+            $calc = 0;
         }
         
         return number_format($calc, 2, '', '');

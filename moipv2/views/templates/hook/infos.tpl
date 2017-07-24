@@ -63,14 +63,14 @@
 							{if $ambiente == "producao"}
 							<div> <a href="{$url_process}" class="btn btn-primary" >Autorizar Moip em Produção</a></div>
 							{else}
-								<p>Você selecinou o ambiente de testes, para configurar o ambiente de produção altere e salve o 	AMBIENTE DE COMUNICAÇÃO</p>
+								<p>Você selecinou o ambiente de testes, para configrar o ambiente de produção altere e salve o 	AMBIENTE DE COMUNICAÇÃO</p>
 							{/if}
 						</td>
 						<td>
 							{if $ambiente == "sandbox"}
 								<div> <a href="{$url_process}" class="btn btn-primary" >Autorizar Moip em Sandbox</a></div>
 							{else}
-								<p>Você selecinou o ambiente de produção, para configurar o ambiente de teste altere e salve o 	AMBIENTE DE COMUNICAÇÃO</p>
+								<p>Você selecinou o ambiente de produção, para configrar o ambiente de teste altere e salve o 	AMBIENTE DE COMUNICAÇÃO</p>
 							{/if}
 						</td>
 					</tr>

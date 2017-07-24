@@ -35,8 +35,9 @@ class Moipv2WebhooksModuleFrontController extends ModuleFrontController
 		if($order_identificador){
 			
 
-			$sql = 'SELECT `id_order` FROM `ps_orders` WHERE `id_cart` LIKE "'.$order_identificador.'"';
+			$sql = 'SELECT `id_order` FROM `'._DB_PREFIX_.'_orders` WHERE `id_cart` LIKE "'.$order_identificador.'"';
 			$order_identificador_id = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($sql);
+			 Logger::addLog($order_identificador_id[0]['id_order'] ,1);
 			if($order_identificador_id)
 			{
 				$order = new Order($order_identificador_id[0]['id_order']);
