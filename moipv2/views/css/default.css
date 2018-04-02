@@ -1,7 +1,21 @@
-
-
+@media (max-width: 900px) {
+	.btn-moip-pg .btn-select-payment-moip {
+	    max-width: 32%;
+	    display: inline-table;
+	    text-align: center;
+	    white-space: normal;
+	}
+	.btn-select-payment-moip:after, .btn-select-payment-moip:before, .btn-select-payment-moip:hover:after, .btn-select-payment-moip:hover:before{
+		display: none;
+	}
+	.name-moip-method {
+		display: none;
+	}
+}
 .escolha { display: none; }
-
+.pl-0 {
+    padding-left: 0 !important;
+}
 .label-moip-pg {
     margin-top: 5px;
     margin-bottom: 2px;
@@ -52,15 +66,15 @@
 
 /*---------------------------------------------VIEW CARD------------------------------------------------*/
 #card-info-brand { width: 75px; height: 45px;}
-#card-info-brand.VISA { background-image: url(/modules/moipv2/images/visa.png); background-repeat: no-repeat; background-position: center; }
-#card-info-brand.MASTERCARD { background-image: url(/modules/moipv2/images/mastercard.png); background-repeat: no-repeat; background-position: center; }
-#card-info-brand.AMEX { background-image: url(/modules/moipv2/images/american.png); background-repeat: no-repeat; background-position: center; }
-#card-info-brand.DINERS { background-image: url(/modules/moipv2/images/dinners.png); background-repeat: no-repeat; background-position: center; }
-#card-info-brand.HIPERCARD { background-image: url(/modules/moipv2/images/hipercard.png); background-repeat: no-repeat; background-position: center; }
-#card-info-brand.ELO { background-image: url(/modules/moipv2/images/elo.png); background-repeat: no-repeat; background-position: center; }
-#card-info-brand.HIPER { background-image: url(/modules/moipv2/images/hiper.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.VISA { background-image: url(../img/visa.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.MASTERCARD { background-image: url(../img/mastercard.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.AMEX { background-image: url(../img/american.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.DINERS { background-image: url(../img/dinners.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.HIPERCARD { background-image: url(../img/hipercard.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.ELO { background-image: url(../img/elo.png); background-repeat: no-repeat; background-position: center; }
+#card-info-brand.HIPER { background-image: url(../img/hiper.png); background-repeat: no-repeat; background-position: center; }
 .card-info {
-	background-image: url(/modules/moipv2/images/default-card-bg.png);
+	background-image: url(../img/default-card-bg.png);
 	background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 260px;
@@ -69,7 +83,7 @@
     z-index: 99;
 }
 .card-info-back {
-	background-image: url(/modules/moipv2/images/card-back-bg.png);
+	background-image: url(../img/card-back-bg.png);
     background-repeat: no-repeat;
     height: 260px;
     width: 390px;

@@ -1,4 +1,21 @@
-		
+{*
+* 2017-2018 Moip Wirecard Brasil
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Academic Free License (AFL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/afl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@prestashop.com so we can send you a copy immediately.
+*
+*
+*  @author MOIP DEVS - <prestashop@moip.com.br>
+*  @copyright  2017-2018 Moip Wirecard Brasil
+*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+*}		
 		{if $paymentMethod == 'CREDIT_CARD'}
 		<h2>{l s='Seu pedido foi recebido e o status dele é' mod='moipv2'}:
 			{if $moip_status == 'CANCELLED'}
@@ -50,7 +67,7 @@
 			</p>
 			<p>
 				<div class="reorder">
-					<a href="{$link->getPageLink('order-opc', true, NULL, "submitReorder=&id_order={{$id_order}}")|escape:'html':'UTF-8'}" class="button btn btn-default button-medium "><span>{l s='Refazer pedido' mod='moipv2'}<i class="icon-chevron-right right"></i></span></a>
+					<a href="{$link->getPageLink('order-opc', true, NULL, "submitReorder=&id_order={{$id_order|escape:'htmlall':'UTF-8'}}")|escape:'htmlall':'UTF-8'}" class="button btn btn-default button-medium "><span>{l s='Refazer pedido' mod='moipv2'}<i class="icon-chevron-right right"></i></span></a>
 				</div>
 			</p>
 			
@@ -63,16 +80,16 @@
 				Boleto gerado sucesso, o código de barra do seu boleto é: 
 			</p>
 			<p>
-				<strong>{{$code_line}}</strong>
+				<strong>{{$code_line|escape:'htmlall':'UTF-8'}}</strong>
 			</p>
 			<p>
 				Ou se preferir:	
-				<a href="{$redirectURI}/print" class="btn btn-success">Imprimir Boleto</a>
+				<a href="{$redirectURI|escape:'htmlall':'UTF-8'}" class="btn btn-success">Imprimir Boleto</a>
 					
 			</p>
 		{elseif $paymentMethod == 'ONLINE_BANK_DEBIT'}
 				<p>Para realizar o pagamento você será direcionado ao ambiente do banco.</p>
-				<p><a href="{$redirectURI}" target="_blank" class="btnPrint button wide card-done left ">Clique aqui para ir ao banco </a></p>
+				<p><a href="{$redirectURI|escape:'htmlall':'UTF-8'}" target="_blank" class="btnPrint button wide card-done left ">Clique aqui para ir ao banco </a></p>
 
 			{else}
 
@@ -84,7 +101,7 @@
 				<p>{l s='Não esqueça de anotar o número do seu pedido %s.' sprintf=$reference mod='moipv2'}</p>
 			{/if}
 		{/if}
-		<p>{l s='Caso tenha alguma dúvida entre em contato conosco' mod='moipv2'} <a href="{$link->getPageLink('contact', true)|escape:'html'}">{l s='por nosso SAC.' mod='moipv2'}</a></p>
+		<p>{l s='Caso tenha alguma dúvida entre em contato conosco' mod='moipv2'} <a href="{$link->getPageLink('contact', true)|escape:'htmlall':'UTF-8'}">{l s='por nosso SAC.' mod='moipv2'}</a></p>
 	
 
 
