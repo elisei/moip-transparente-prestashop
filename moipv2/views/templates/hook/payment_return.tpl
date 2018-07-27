@@ -84,7 +84,7 @@
 			</p>
 			<p>
 				Ou se preferir:	
-				<a href="{$redirectURI|escape:'htmlall':'UTF-8'}" class="btn btn-success">Imprimir Boleto</a>
+				<a href="{$redirectURI|escape:'htmlall':'UTF-8'}" class="btn btn-success" target="_blank">Imprimir Boleto</a>
 					
 			</p>
 		{elseif $paymentMethod == 'ONLINE_BANK_DEBIT'}
