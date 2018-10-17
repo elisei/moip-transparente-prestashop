@@ -234,6 +234,7 @@ MoipPagamentos = function(){
         $(".parcelamentoCartao").text(parcelamentoCartao);
     });
     $( "form#form-moip" ).submit(function( event ) {
+     disableButton();
         paymentMethod = $("input[name=paymentMethod").val();
           if(paymentMethod == 'CREDIT_CARD'){
                 $('#alert-area').fadeOut( "slow" );
@@ -258,6 +259,7 @@ MoipPagamentos = function(){
                         $('#alert-area').append("<li>"+value+"<li>");
                     });
                     $('#alert-area').fadeIn("slow");
+                 enableButton();
                 }
             } else {
                 return this;
