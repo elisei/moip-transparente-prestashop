@@ -33,6 +33,7 @@ class Moipv2WebhooksModuleFrontController extends ModuleFrontController
 	}
 	public function postProcess()
 	{
+		sleep(2);
 		Logger::addLog("-------- webhooks -------- ".rand(), 1);
 		parent::postProcess();
 		$headers = $this->getRequestHeaders();
